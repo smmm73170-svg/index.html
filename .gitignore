@@ -1,24 +1,46 @@
-# Compiled class file
-*.class
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>افتح واتساب وارسل رسالة</title>
+  <style>
+    body{font-family: Arial, Helvetica, sans-serif; background:#f3f6fb; display:flex; align-items:center; justify-content:center; height:100vh; margin:0}
+    .card{background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.08); max-width:420px; width:95%; text-align:center}
+    button{background:#25D366; color:#fff; border:0; padding:12px 20px; border-radius:8px; font-size:16px; cursor:pointer}
+    p{color:#333}
+  </style>
+  <script>
+    // ===== CONFIG =====
+    // ضع هنا الرقم بصيغة دولية بدون + أو 00:
+    const phone = "963997744508";
+    // ضع هنا الرسالة (تكتب بالعربي أو أي لغة) — سيتم ترميزها تلقائياً
+    const message = "مرحبا كيفك";
+    // ==================
 
-# Log file
-*.log
+    function urlencode(str){
+      return encodeURIComponent(str);
+    }
 
-# BlueJ files
-*.ctxt
+    function openWhatsApp(){
+      // wa.me link (سهل ومشترك في الأجهزة والموبايل)
+      const url = "https://wa.me/" + phone + "?text=" + urlencode(message);
+      // افتح الرابط (سيفتح تطبيق الواتساب إن كان مثبتاً، أو واتساب ويب في المتصفح)
+      window.location.href = url;
+    }
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+    // افتح تلقائياً بعد تحميل الصفحة
+    window.addEventListener("DOMContentLoaded", function(){
+      // تأخير بسيط حتى تظهر الواجهة للمستخدم
+      setTimeout(openWhatsApp, 600);
+    });
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h3>جارٍ فتح واتساب...</h3>
+    <p>إذا لم يفتح تلقائياً اضغط الزر أدناه</p>
+    <button onclick="openWhatsApp()">افتح واتساب وأرسل الرسالة</button>
+  </div>
+</body>
+</html>
